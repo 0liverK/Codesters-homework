@@ -1,7 +1,7 @@
 from random import randint
 from time import sleep
 import os
-clear = lambda: os.system('clear')
+clear = lambda: os.system('cls')
 
 hero = {
 	# create keys and values here
@@ -37,6 +37,23 @@ input("🎮 Press ENTER to continue...🎮")
 
 def noFight():
 	print("🏃 Hero decided to avoid this fight...🏃") 
+	if randint(0, 100) < 60:
+		print("You found a health potion!")
+		want_to_drink = input('❓  Drink the health potion? [Y/n]❓').lower()
+
+		potionEffect = randint(-20, 20)
+		if want_to_drink == '' or 'y' in want_to_drink:
+			if potionEffect < 0:
+				print("☠️ Oh no! It was a poison! Hero lost", abs(potionEffect), "health points.☠️")
+				hero["health"] += potionEffect
+			else:
+				print("💖 Yay! It was a healing potion! Hero gained", potionEffect, "health points.💖")
+				hero["health"] += potionEffect
+	print("💙 Hero's current health:", hero["health"], "💙")
+
+		
+	if hero["health"] <= 0:
+		gameOver()
 
 
 def fight():
@@ -55,6 +72,25 @@ def fight():
 		hero["level"] += 1
 		hero["experience"] = 0
 		print("🆙 Hero leveled up! Now at level", hero["level"], "🆙")
+
+
+
+
+if day == 5:
+	print("📖Hero found a spellbook!📖")
+	# your code here...
+	want_to_learn = input('❓  Learn a new spell? [Y/n]❓').lower()
+	if want_to_learn == '' or 'y' in want_to_learn and hero["experience"] >= 100:
+		hero["strength"] += 5
+		print("✨ Hero learned a new spell and increased strength to", hero["strength"], "✨")
+
+
+
+
+
+
+
+
 
 def gameOver():
 	reset()
@@ -84,7 +120,6 @@ def reset():
 		"level": 1,
 		"experience": 0
 	}
-
 
 
 startGame()
