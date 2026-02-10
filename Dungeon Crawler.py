@@ -21,6 +21,7 @@ def startGame():
 	global day
 	while day <= 10:
 		print("📅 Day", day, "started...📅")
+		showStat()
 		day += 1
 
 		want_to_fight = input('❓  Fight with a goblin? [Y/n]❓').lower()
@@ -29,6 +30,10 @@ def startGame():
 			fight()
 		else:
 			noFight()
+		
+		input("🎮 Press ENTER for next day...🎮")
+		clear()
+		
 		
 
 
@@ -89,11 +94,14 @@ if day == 5:
 
 
 
+def showStat():
+	print(f"💙 HP: {hero['health']} | 🔵 XP: {hero['experience']} | 🏅 Level: {hero['level']} | 💰 Gold: {hero['gold']} 💰")
 
 
 
 def gameOver():
 	reset()
+	clear()
 	print("🟥 Game Over! Your hero has died.🟥")
 	input("🎮 Press ENTER to play again🎮")
 	startGame()
@@ -101,6 +109,7 @@ def gameOver():
 
 def endGame():
 	reset()
+	clear()
 	print("🎉 Congratulations! Your hero has survived the dungeon for 10 days.🎉")
 	input("🎮 Press ENTER to play again🎮")
 	startGame()
